@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %}
+
+
+{% block context %}
+
+<form id="new_document_attachment" action="{% url 'home' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Распознать">
+</form>
+<p style="border: 0px double black;"><textarea name="" id="" rows="18" style="width: 99%; display: block;
+  margin-left: auto; margin-right: auto;">{{ text }}</textarea></p>
+<p style="border: 4px double rgb(88, 87, 87);"><img src="{{ imgFile.url }}" alt="" width="100%"></p>
+
+
+<script>
+    const form = document.getElementById("new_document_attachment");
+const fileInput = document.getElementById("document_attachment_doc");
+
+fileInput.addEventListener('change', () => {
+  form.submit();
+});
+
+window.addEventListener('paste', e => {
+  fileInput.files = e.clipboardData.files;
+});
+</script>
+{% endblock context %}

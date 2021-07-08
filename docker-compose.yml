@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build: ./app_OCR
+    command: python ./www/WebFineOCR/manage.py runserver 0.0.0.0:8000 
+    #command: ls ./www -l
+    volumes:
+      - .:/app_OCR
+    ports:
+      - '8095:8000'
